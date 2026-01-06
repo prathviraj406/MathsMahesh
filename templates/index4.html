@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Educational Resources Portal</title>
+    <meta name="author" content="vecuro">
+    <meta name="description" content="Educational Resources Portal for BSc and BCA Students">
+    <meta name="keywords" content="BSc Materials, BCA Resources, Question Papers, Lab Manuals">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* 3D Full Screen Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Content Container */
+        .content-container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            background: rgba(10, 10, 15, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 10px 2px rgba(52, 152, 219, 0.8),
+                0 0 20px 4px rgba(46, 204, 113, 0.6),
+                0 0 30px 6px rgba(155, 89, 182, 0.4);
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Glowing Orbs */
+        .orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            animation: orbFloat 30s infinite ease-in-out;
+        }
+        
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(52, 152, 219, 0.9) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(46, 204, 113, 0.7) 0%, transparent 70%);
+            bottom: -200px;
+            right: -200px;
+            animation-delay: 5s;
+        }
+        
+        .orb-3 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(155, 89, 182, 0.5) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+        
+        .orb-4 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(231, 76, 60, 0.4) 0%, transparent 70%);
+            top: 20%;
+            right: -100px;
+            animation-delay: 15s;
+        }
+        
+        .orb-5 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(241, 196, 15, 0.3) 0%, transparent 70%);
+            bottom: 30%;
+            left: -100px;
+            animation-delay: 20s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(100px, 100px) scale(1.1);
+            }
+            50% {
+                transform: translate(-50px, 150px) scale(0.9);
+            }
+            75% {
+                transform: translate(150px, -50px) scale(1.2);
+            }
+        }
+        
+        /* 3D Grid */
+        .grid-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(52, 152, 219, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(52, 152, 219, 0.15) 1px, transparent 1px),
+                linear-gradient(rgba(46, 204, 113, 0.1) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(46, 204, 113, 0.1) 2px, transparent 2px);
+            background-size: 100px 100px, 100px 100px, 200px 200px, 200px 200px;
+            animation: gridMove 40s linear infinite;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0, 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 200px 200px, 200px 200px, 400px 400px, 400px 400px;
+            }
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(26, 26, 46, 0.95) !important;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 0 25px rgba(52, 152, 219, 0.7);
+        }
+        
+        .navbar-nav {
+            align-items: center;
+        }
+        
+        .nav-item {
+            margin: 0 5px;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: 0.5s;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dropdown-menu {
+            background: rgba(26, 26, 46, 0.98) !important;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            animation: dropdownFade 0.3s ease;
+        }
+        
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dropdown-item {
+            color: rgba(255, 255, 255, 0.85) !important;
+            padding: 0.75rem 1rem !important;
+            border-radius: 6px;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%) !important;
+            color: white !important;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-toggle::after {
+            border-top: 0.3em solid rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-toggle:hover::after {
+            border-top: 0.3em solid white;
+        }
+        
+        /* Dropdown Submenu */
+        .dropdown-submenu {
+            position: relative;
+        }
+        
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            margin-left: 0;
+            display: none;
+        }
+        
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-submenu > .dropdown-item::after {
+            transform: rotate(-90deg);
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            margin-top: -0.5em;
+        }
+        
+        @media (max-width: 992px) {
+            .dropdown-submenu .dropdown-menu {
+                position: static !important;
+                margin-left: 15px;
+                margin-top: 5px;
+                border-left: 2px solid rgba(255, 255, 255, 0.1);
+                box-shadow: none;
+            }
+            
+            .dropdown-submenu > .dropdown-item::after {
+                transform: rotate(0deg) !important;
+            }
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 50px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3498db, #2ecc71, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            animation: titleGlow 3s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(46, 204, 113, 0.4);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Resources Section */
+        .resources-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .resource-card:hover::before {
+            left: 100%;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+        
+        .resource-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .resource-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .resource-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .navbar-nav .nav-item {
+                margin: 5px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .resource-card {
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 26, 46, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #2980b9, #27ae60);
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Background Elements -->
+    <div class="grid-3d"></div>
+    <div class="orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+    </div>
+    <div class="particles" id="particles-container"></div>
+    <canvas id="bg-canvas"></canvas>
+    
+    <div class="content-container">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-graduation-cap me-2"></i>College Portal
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- BSc Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="bscDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-calculator me-1"></i> BSc
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="bscDropdown">
+                                <!-- BSc SEP -->
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-book me-2"></i> SEP
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/17iO3EOQHSnqTUS7n8AFxM0KjVGsdSKQR/view" target="_blank">
+                                                <i class="fas fa-file-alt me-2"></i> SEP Guidelines
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1gxV7OyxxEj2qCFtw6it1pHD5UD0Bsr1H/view" target="_blank">
+                                                <i class="fas fa-list-alt me-2"></i> Syllabus
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-1 me-2"></i> 1st Semester
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/19o0OkzJTyb4sItV-_zJWZySwX5tRnBJb/view" target="_blank">
+                                                        <i class="fas fa-file-pdf me-2"></i> Blow up
+                                                    </a>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                                        <i class="fas fa-flask me-2"></i> Lab
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1ATRTZ06AJPcdsH0Nd7YOSHSFnujR8CIB/view" target="_blank">
+                                                                <i class="fas fa-book me-2"></i> Lab Manual
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1iSAoQd-Zj5NlhfB_XO1zdQYm-yyxIPcE/view" target="_blank">
+                                                                <i class="fas fa-question-circle me-2"></i> Practical Exam Pattern
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                                        <i class="fas fa-file-alt me-2"></i> Question Papers
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1sAsms8OSlGg9xxFmvUJi6jW2se8QLghD/view" target="_blank">
+                                                                <i class="fas fa-calendar me-2"></i> December 2024
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                                        <i class="fas fa-book-open me-2"></i> Books
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1PW5SRVNesawJWGOsaz_tnu8kg4OpFshS/view" target="_blank">
+                                                                <i class="fas fa-book me-2"></i> Thomas' Calculus, 11th Ed.
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/19U5sXaneKeWovNRtALuQ4YIq1wqramS_/view" target="_blank">
+                                                                <i class="fas fa-book me-2"></i> Differential Calculus
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1RdBNuJ-yAVjl-uZ3POgdPRtQlaVU33oe/view" target="_blank">
+                                                                <i class="fas fa-book me-2"></i> Integral Calculus
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-2 me-2"></i> 2nd Semester
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1t7T1BFDHcllYM92QcsyWSYwPzxzsbTon/view" target="_blank">
+                                                        <i class="fas fa-file-pdf me-2"></i> Blow up
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-3 me-2"></i> 3rd Semester
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1Z59XYWGXpSBGlcR-lFKcDHXI7MR2MtOZ/view" target="_blank">
+                                                        <i class="fas fa-sticky-note me-2"></i> Notes
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                                <!-- BSc NEP -->
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-book-open me-2"></i> NEP
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1XnlZNsxp_Wa6i7lVUmugPwX5fMZQ2Pky/view" target="_blank">
+                                                <i class="fas fa-file-alt me-2"></i> NEP Guidelines
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-list-alt me-2"></i> Syllabus
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1g9zEf4SSr4sbgO4WAYB7DR5qN0QKQQOD/view" target="_blank">
+                                                        <i class="fas fa-semester-1 me-2"></i> I and II Semesters
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/17DXlSv50kErUoLR8PLsqyt10c8kX4-Jc/view" target="_blank">
+                                                        <i class="fas fa-semester-2 me-2"></i> III and IV Semesters
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/110DgDMXda9f9riFrAB_rRFqMYAQM6YPw/view" target="_blank">
+                                                        <i class="fas fa-semester-3 me-2"></i> V and VI Semesters
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- BCA Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="bcaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-laptop-code me-1"></i> BCA
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="bcaDropdown">
+                                <!-- BCA SEP -->
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-book me-2"></i> SEP
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/17iO3EOQHSnqTUS7n8AFxM0KjVGsdSKQR/view" target="_blank">
+                                                <i class="fas fa-file-alt me-2"></i> SEP Guidelines
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1MjW0xvrr8p6ke5wCrWCP9kMf6wOqj2MM/view" target="_blank">
+                                                <i class="fas fa-list-alt me-2"></i> Syllabus
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-1 me-2"></i> 1st Semester
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/10qwKn96c6XalssK-Jo6EIy5xB776fIBD/view" target="_blank">
+                                                        <i class="fas fa-file-pdf me-2"></i> Blow up
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1Ap7DJ3Qs-VH-NH_SKjd2Exmu-ElWMVGQ/view" target="_blank">
+                                                        <i class="fas fa-question-circle me-2"></i> Question Bank
+                                                    </a>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                                        <i class="fas fa-file-alt me-2"></i> Question Papers
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1JMlm1X0H01HuDikJ_2ecix2TSeEO7Bq_/view" target="_blank">
+                                                                <i class="fas fa-calendar me-2"></i> December 2024
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                                        <i class="fas fa-book-open me-2"></i> Books
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" href="https://drive.google.com/file/d/12uAofnOh9WgKwmgtDmb6tK1Vp92Ieef4/view" target="_blank">
+                                                                <i class="fas fa-book me-2"></i> Discrete Mathematical Structures
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-2 me-2"></i> 2nd Semester
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1UHAbihPAF8StfzqKXDrd3ueq_CY0pUeE/view" target="_blank">
+                                                        <i class="fas fa-file-pdf me-2"></i> Blow up
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1TyiQn4NeXoo7fZULSfZRb95wekdL_PyE/view" target="_blank">
+                                                        <i class="fas fa-question-circle me-2"></i> Question Bank
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                                <!-- BCA NEP -->
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-book-open me-2"></i> NEP
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-info-circle me-2"></i> Coming Soon
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-home me-1"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#resources">
+                                <i class="fas fa-download me-1"></i> Resources
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-envelope me-1"></i> Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="hero-title">Educational Resources Portal</h1>
+                        <p class="hero-subtitle">
+                            Access comprehensive study materials, question papers, lab manuals, and resources for BSc and BCA programs. Everything you need for academic success in one place.
+                        </p>
+                        <div class="mt-4">
+                            <a href="#resources" class="btn btn-primary btn-lg">
+                                <i class="fas fa-download me-2"></i> Explore Resources
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <div class="mt-4 mt-lg-0">
+                            <i class="fas fa-graduation-cap" style="font-size: 15rem; background: linear-gradient(45deg, #3498db, #2ecc71); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section">
+            <div class="container">
+                <h2 class="section-title">Available Resources</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3 class="resource-title">Study Materials</h3>
+                            <p class="resource-description">
+                                Comprehensive notes, blow-ups, and reference materials for all semesters.
+                            </p>
+                            <a href="#" class="btn btn-primary">Access Materials</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <h3 class="resource-title">Question Papers</h3>
+                            <p class="resource-description">
+                                Previous year question papers with solutions for exam preparation.
+                            </p>
+                            <a href="#" class="btn btn-primary">View Papers</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3 class="resource-title">Lab Manuals</h3>
+                            <p class="resource-description">
+                                Practical guides and lab manuals for hands-on learning and experiments.
+                            </p>
+                            <a href="#" class="btn btn-primary">Download Manuals</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="resource-title">Reference Books</h3>
+                            <p class="resource-description">
+                                Digital copies of recommended textbooks and reference materials.
+                            </p>
+                            <a href="#" class="btn btn-primary">Browse Books</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h3 class="resource-title">Syllabus</h3>
+                            <p class="resource-description">
+                                Complete course syllabus and curriculum details for all programs.
+                            </p>
+                            <a href="#" class="btn btn-primary">View Syllabus</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-guidelines"></i>
+                            </div>
+                            <h3 class="resource-title">Guidelines</h3>
+                            <p class="resource-description">
+                                Academic guidelines and examination patterns for SEP and NEP.
+                            </p>
+                            <a href="#" class="btn btn-primary">Read Guidelines</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="footer-logo">College Portal</div>
+                        <p class="footer-text">
+                            Providing quality educational resources for BSc and BCA students. 
+                            Access study materials, question papers, and lab manuals in one place.
+                        </p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <h5 class="text-white mb-3">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">Home</a></li>
+                            <li class="mb-2"><a href="#resources" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">Resources</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">BSc Materials</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">BCA Materials</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="text-white mb-3">Contact Info</h5>
+                        <p class="footer-text mb-2">
+                            <i class="fas fa-envelope me-2"></i> support@collegeportal.edu
+                        </p>
+                        <p class="footer-text mb-2">
+                            <i class="fas fa-phone me-2"></i> +91 12345 67890
+                        </p>
+                        <p class="footer-text">
+                            <i class="fas fa-map-marker-alt me-2"></i> College Campus, City, State
+                        </p>
+                    </div>
+                </div>
+                <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.1);">
+                <div class="text-center">
+                    <p class="mb-0" style="color: rgba(255,255,255,0.5);">
+                        &copy; 2024 College Educational Resources Portal. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 3D Background Script -->
+    <script>
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 150;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const size = Math.random() * 3 + 1;
+                const duration = Math.random() * 20 + 15;
+                const delay = Math.random() * 20;
+                const color = Math.random() > 0.5 ? '52, 152, 219' : '46, 204, 113';
+                
+                particle.style.cssText = `
+                    left: ${left}%;
+                    top: ${top}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    animation-delay: ${delay}s;
+                    animation-duration: ${duration}s;
+                    background: rgba(${color}, ${Math.random() * 0.4 + 0.4});
+                    box-shadow: 
+                        0 0 ${size * 5}px ${size * 2}px rgba(${color}, 0.3),
+                        0 0 ${size * 8}px ${size * 4}px rgba(${color}, 0.2);
+                `;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Initialize 3D canvas
+        function initCanvas() {
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Create stars
+            class Star {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3;
+                    this.speed = Math.random() * 0.5 + 0.1;
+                    this.alpha = Math.random() * 0.5 + 0.5;
+                }
+                
+                update() {
+                    this.y += this.speed;
+                    if (this.y > canvas.height) {
+                        this.y = 0;
+                        this.x = Math.random() * canvas.width;
+                    }
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                    ctx.fill();
+                }
+            }
+            
+            const stars = [];
+            for (let i = 0; i < 100; i++) {
+                stars.push(new Star());
+            }
+            
+            function animate() {
+                // Clear with gradient
+                const gradient = ctx.createRadialGradient(
+                    canvas.width / 2, canvas.height / 2, 0,
+                    canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+                );
+                gradient.addColorStop(0, 'rgba(26, 26, 46, 0.3)');
+                gradient.addColorStop(1, 'rgba(10, 10, 15, 0.5)');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Update and draw stars
+                stars.forEach(star => {
+                    star.update();
+                    star.draw();
+                });
+                
+                // Draw grid
+                ctx.strokeStyle = 'rgba(52, 152, 219, 0.1)';
+                ctx.lineWidth = 1;
+                
+                // Draw perspective grid
+                const gridSize = 100;
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                
+                ctx.beginPath();
+                for (let x = centerX; x < canvas.width; x += gridSize) {
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                }
+                for (let x = centerX; x > 0; x -= gridSize) {
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                }
+                for (let y = centerY; y < canvas.height; y += gridSize) {
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                }
+                for (let y = centerY; y > 0; y -= gridSize) {
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                }
+                ctx.stroke();
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            initCanvas();
+            
+            // Enhanced dropdown functionality
+            const dropdowns = document.querySelectorAll('.dropdown-submenu');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const submenu = this.nextElementSibling;
+                    if (submenu) {
+                        // Close other open submenus at the same level
+                        const parent = this.parentElement;
+                        const siblings = parent.parentElement.querySelectorAll('.dropdown-submenu > .dropdown-menu.show');
+                        siblings.forEach(sibling => {
+                            if (sibling !== submenu) {
+                                sibling.classList.remove('show');
+                            }
+                        });
+                        
+                        submenu.classList.toggle('show');
+                    }
+                });
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-menu')) {
+                    document.querySelectorAll('.dropdown-submenu .dropdown-menu.show').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Parallax effect
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const particles = document.querySelectorAll('.particle');
+                
+                particles.forEach(particle => {
+                    const speed = 0.3;
+                    const yPos = -(scrolled * speed);
+                    particle.style.transform += ` translateY(${yPos}px)`;
+                });
+            });
+            
+            // Interactive orb movement
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                const orbs = document.querySelectorAll('.orb');
+                orbs.forEach((orb, index) => {
+                    const speed = (index + 1) * 0.2;
+                    const xMove = (mouseX - 0.5) * 100 * speed;
+                    const yMove = (mouseY - 0.5) * 100 * speed;
+                    
+                    orb.style.transform = `translate(${xMove}px, ${yMove}px) scale(${1 + speed * 0.1})`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

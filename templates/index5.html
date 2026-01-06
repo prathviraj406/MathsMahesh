@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Educational Resources Portal</title>
+    <meta name="author" content="vecuro">
+    <meta name="description" content="Educational Resources Portal for BSc and BCA Students">
+    <meta name="keywords" content="BSc Materials, BCA Resources, Question Papers, Lab Manuals">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* 3D Background Container - IMPROVED VISIBILITY */
+        #bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        /* Rotating 3D Cube - IMPROVED VISIBILITY */
+        .cube-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: rotateCube 30s infinite linear;
+            z-index: 1;
+        }
+        
+        .cube {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cube-face {
+            position: absolute;
+            border: 2px solid rgba(52, 152, 219, 0.8);
+            background: rgba(52, 152, 219, 0.15);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgba(52, 152, 219, 0.95);
+            text-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.4);
+            transition: all 0.5s ease;
+        }
+        
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg); }
+        }
+        
+        /* Floating Mathematical Elements - IMPROVED VISIBILITY */
+        .math-element {
+            position: absolute;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: rgba(46, 204, 113, 0.95);
+            text-shadow: 0 0 15px rgba(46, 204, 113, 0.8);
+            animation: float 20s infinite linear;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.6));
+            opacity: 0.95;
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 5px;
+        }
+        
+        .math-element.large {
+            font-size: 1.6rem;
+            color: rgba(155, 89, 182, 0.95);
+            text-shadow: 0 0 15px rgba(155, 89, 182, 0.8);
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 12px;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) rotate(36deg) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-100px) rotate(324deg) scale(1);
+            }
+            100% {
+                transform: translateY(-150px) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+        
+        /* Rotating Mathematical Image - IMPROVED VISIBILITY */
+        .rotating-image {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            animation: rotate3D 20s infinite linear;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 30px rgba(52, 152, 219, 0.7)) brightness(1.2);
+            z-index: 1;
+        }
+        
+        .rotating-image img,
+        .rotating-image svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: hue-rotate(90deg) brightness(1.3);
+        }
+        
+        @keyframes rotate3D {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+            }
+            25% {
+                transform: rotateX(90deg) rotateY(45deg) rotateZ(45deg) scale(1.1);
+            }
+            50% {
+                transform: rotateX(180deg) rotateY(90deg) rotateZ(90deg) scale(1);
+            }
+            75% {
+                transform: rotateX(270deg) rotateY(135deg) rotateZ(135deg) scale(1.1);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(180deg) rotateZ(180deg) scale(1);
+            }
+        }
+        
+        /* Mathematical Grid - IMPROVED VISIBILITY */
+        .math-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(52, 152, 219, 0.25) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(52, 152, 219, 0.25) 1px, transparent 1px),
+                linear-gradient(rgba(46, 204, 113, 0.15) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(46, 204, 113, 0.15) 2px, transparent 2px);
+            background-size: 
+                80px 80px, 
+                80px 80px, 
+                160px 160px, 
+                160px 160px;
+            animation: gridMove 40s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0, 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 400px 400px, 400px 400px, 800px 800px, 800px 800px;
+            }
+        }
+        
+        /* Mathematical Orbital Rings */
+        .orbital-ring {
+            position: absolute;
+            border: 1px solid;
+            border-radius: 50%;
+            animation: rotateOrbit 40s infinite linear;
+            opacity: 0.3;
+        }
+        
+        @keyframes rotateOrbit {
+            0% {
+                transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg);
+            }
+            100% {
+                transform: rotateX(60deg) rotateY(360deg) rotateZ(360deg);
+            }
+        }
+        
+        /* Content Container */
+        .content-container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            background: rgba(10, 10, 15, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(26, 26, 46, 0.95) !important;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 0 25px rgba(52, 152, 219, 0.7);
+        }
+        
+        .navbar-nav {
+            align-items: center;
+        }
+        
+        .nav-item {
+            margin: 0 5px;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: 0.5s;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dropdown-menu {
+            background: rgba(26, 26, 46, 0.98) !important;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            animation: dropdownFade 0.3s ease;
+        }
+        
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dropdown-item {
+            color: rgba(255, 255, 255, 0.85) !important;
+            padding: 0.75rem 1rem !important;
+            border-radius: 6px;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%) !important;
+            color: white !important;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-toggle::after {
+            border-top: 0.3em solid rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-toggle:hover::after {
+            border-top: 0.3em solid white;
+        }
+        
+        /* Dropdown Submenu */
+        .dropdown-submenu {
+            position: relative;
+        }
+        
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            margin-left: 0;
+            display: none;
+        }
+        
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-submenu > .dropdown-item::after {
+            transform: rotate(-90deg);
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            margin-top: -0.5em;
+        }
+        
+        @media (max-width: 992px) {
+            .dropdown-submenu .dropdown-menu {
+                position: static !important;
+                margin-left: 15px;
+                margin-top: 5px;
+                border-left: 2px solid rgba(255, 255, 255, 0.1);
+                box-shadow: none;
+            }
+            
+            .dropdown-submenu > .dropdown-item::after {
+                transform: rotate(0deg) !important;
+            }
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 50px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3498db, #2ecc71, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            animation: titleGlow 3s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(46, 204, 113, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(155, 89, 182, 0.4);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Resources Section */
+        .resources-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .resource-card:hover::before {
+            left: 100%;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+        
+        .resource-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .resource-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .resource-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .navbar-nav .nav-item {
+                margin: 5px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .resource-card {
+                margin-bottom: 30px;
+            }
+            
+            .rotating-image {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 26, 46, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #2980b9, #27ae60);
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Background Container -->
+    <div id="bg-container">
+        <div class="math-grid"></div>
+        <div class="cube-container">
+            <div class="cube" id="main-cube"></div>
+        </div>
+        <div class="rotating-image" id="math-image"></div>
+        <div id="math-elements"></div>
+        <div id="orbital-rings"></div>
+    </div>
+    
+    <div class="content-container">
+        <!-- Navigation Bar -->
+         <center>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-graduation-cap me-2"></i>College Portal
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav"> <!-- Added justify-content-center here -->
+            <ul class="navbar-nav">
+                <!-- BSc Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="bscDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-calculator me-1"></i> BSc
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="bscDropdown">
+                        <!-- BSc SEP -->
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">
+                                <i class="fas fa-book me-2"></i> SEP
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="https://drive.google.com/file/d/17iO3EOQHSnqTUS7n8AFxM0KjVGsdSKQR/view" target="_blank">
+                                        <i class="fas fa-file-alt me-2"></i> SEP Guidelines
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1gxV7OyxxEj2qCFtw6it1pHD5UD0Bsr1H/view" target="_blank">
+                                        <i class="fas fa-list-alt me-2"></i> Syllabus
+                                    </a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-1 me-2"></i> 1st Semester
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/19o0OkzJTyb4sItV-_zJWZySwX5tRnBJb/view" target="_blank">
+                                                <i class="fas fa-file-pdf me-2"></i> Blow up
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-flask me-2"></i> Lab
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1ATRTZ06AJPcdsH0Nd7YOSHSFnujR8CIB/view" target="_blank">
+                                                        <i class="fas fa-book me-2"></i> Lab Manual
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1iSAoQd-Zj5NlhfB_XO1zdQYm-yyxIPcE/view" target="_blank">
+                                                        <i class="fas fa-question-circle me-2"></i> Practical Exam Pattern
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-file-alt me-2"></i> Question Papers
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1sAsms8OSlGg9xxFmvUJi6jW2se8QLghD/view" target="_blank">
+                                                        <i class="fas fa-calendar me-2"></i> December 2024
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-book-open me-2"></i> Books
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1PW5SRVNesawJWGOsaz_tnu8kg4OpFshS/view" target="_blank">
+                                                        <i class="fas fa-book me-2"></i> Thomas' Calculus, 11th Ed.
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/19U5sXaneKeWovNRtALuQ4YIq1wqramS_/view" target="_blank">
+                                                        <i class="fas fa-book me-2"></i> Differential Calculus
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1RdBNuJ-yAVjl-uZ3POgdPRtQlaVU33oe/view" target="_blank">
+                                                        <i class="fas fa-book me-2"></i> Integral Calculus
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-2 me-2"></i> 2nd Semester
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1t7T1BFDHcllYM92QcsyWSYwPzxzsbTon/view" target="_blank">
+                                                <i class="fas fa-file-pdf me-2"></i> Blow up
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-3 me-2"></i> 3rd Semester
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1Z59XYWGXpSBGlcR-lFKcDHXI7MR2MtOZ/view" target="_blank">
+                                                <i class="fas fa-sticky-note me-2"></i> Notes
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- BSc NEP -->
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">
+                                <i class="fas fa-book-open me-2"></i> NEP
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1XnlZNsxp_Wa6i7lVUmugPwX5fMZQ2Pky/view" target="_blank">
+                                        <i class="fas fa-file-alt me-2"></i> NEP Guidelines
+                                    </a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-list-alt me-2"></i> Syllabus
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1g9zEf4SSr4sbgO4WAYB7DR5qN0QKQQOD/view" target="_blank">
+                                                <i class="fas fa-semester-1 me-2"></i> I and II Semesters
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/17DXlSv50kErUoLR8PLsqyt10c8kX4-Jc/view" target="_blank">
+                                                <i class="fas fa-semester-2 me-2"></i> III and IV Semesters
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/110DgDMXda9f9riFrAB_rRFqMYAQM6YPw/view" target="_blank">
+                                                <i class="fas fa-semester-3 me-2"></i> V and VI Semesters
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- BCA Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="bcaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-laptop-code me-1"></i> BCA
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="bcaDropdown">
+                        <!-- BCA SEP -->
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">
+                                <i class="fas fa-book me-2"></i> SEP
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="https://drive.google.com/file/d/17iO3EOQHSnqTUS7n8AFxM0KjVGsdSKQR/view" target="_blank">
+                                        <i class="fas fa-file-alt me-2"></i> SEP Guidelines
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1MjW0xvrr8p6ke5wCrWCP9kMf6wOqj2MM/view" target="_blank">
+                                        <i class="fas fa-list-alt me-2"></i> Syllabus
+                                    </a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-1 me-2"></i> 1st Semester
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/10qwKn96c6XalssK-Jo6EIy5xB776fIBD/view" target="_blank">
+                                                <i class="fas fa-file-pdf me-2"></i> Blow up
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1Ap7DJ3Qs-VH-NH_SKjd2Exmu-ElWMVGQ/view" target="_blank">
+                                                <i class="fas fa-question-circle me-2"></i> Question Bank
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-file-alt me-2"></i> Question Papers
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/1JMlm1X0H01HuDikJ_2ecix2TSeEO7Bq_/view" target="_blank">
+                                                        <i class="fas fa-calendar me-2"></i> December 2024
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">
+                                                <i class="fas fa-book-open me-2"></i> Books
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="https://drive.google.com/file/d/12uAofnOh9WgKwmgtDmb6tK1Vp92Ieef4/view" target="_blank">
+                                                        <i class="fas fa-book me-2"></i> Discrete Mathematical Structures
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">
+                                        <i class="fas fa-2 me-2"></i> 2nd Semester
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1UHAbihPAF8StfzqKXDrd3ueq_CY0pUeE/view" target="_blank">
+                                                <i class="fas fa-file-pdf me-2"></i> Blow up
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="https://drive.google.com/file/d/1TyiQn4NeXoo7fZULSfZRb95wekdL_PyE/view" target="_blank">
+                                                <i class="fas fa-question-circle me-2"></i> Question Bank
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- BCA NEP -->
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">
+                                <i class="fas fa-book-open me-2"></i> NEP
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-info-circle me-2"></i> Coming Soon
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <!-- <a class="nav-link" href="#">
+                        <i class="fas fa-home me-1"></i> Home
+                    </a> -->
+                </li>
+                <li class="nav-item">
+                    <!-- <a class="nav-link" href="#resources">
+                        <i class="fas fa-download me-1"></i> Resources
+                    </a> -->
+                </li>
+                <li class="nav-item">
+                    <!-- <a class="nav-link" href="#"> -->
+                        <!-- <i class="fas fa-envelope me-1"></i> Contact -->
+                    <!-- </a> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+        <center>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="hero-title">Educational Resources Portal</h1>
+                        <p class="hero-subtitle">
+                            Access comprehensive study materials, question papers, lab manuals, and resources for BSc and BCA programs. Everything you need for academic success in one place.
+                        </p>
+                        <div class="mt-4">
+                            <a href="#resources" class="btn btn-primary btn-lg">
+                                <i class="fas fa-download me-2"></i> Explore Resources
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <div class="mt-4 mt-lg-0">
+                            <canvas id="mathCanvas" width="400" height="400" style="max-width: 100%; height: auto;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section">
+            <div class="container">
+                <h2 class="section-title">Available Resources</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3 class="resource-title">Study Materials</h3>
+                            <p class="resource-description">
+                                Comprehensive notes, blow-ups, and reference materials for all semesters.
+                            </p>
+                            <a href="#" class="btn btn-primary">Access Materials</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <h3 class="resource-title">Question Papers</h3>
+                            <p class="resource-description">
+                                Previous year question papers with solutions for exam preparation.
+                            </p>
+                            <a href="#" class="btn btn-primary">View Papers</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3 class="resource-title">Lab Manuals</h3>
+                            <p class="resource-description">
+                                Practical guides and lab manuals for hands-on learning and experiments.
+                            </p>
+                            <a href="#" class="btn btn-primary">Download Manuals</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="resource-title">Reference Books</h3>
+                            <p class="resource-description">
+                                Digital copies of recommended textbooks and reference materials.
+                            </p>
+                            <a href="#" class="btn btn-primary">Browse Books</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h3 class="resource-title">Syllabus</h3>
+                            <p class="resource-description">
+                                Complete course syllabus and curriculum details for all programs.
+                            </p>
+                            <a href="#" class="btn btn-primary">View Syllabus</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-guidelines"></i>
+                            </div>
+                            <h3 class="resource-title">Guidelines</h3>
+                            <p class="resource-description">
+                                Academic guidelines and examination patterns for SEP and NEP.
+                            </p>
+                            <a href="#" class="btn btn-primary">Read Guidelines</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="footer-logo">College Portal</div>
+                        <p class="footer-text">
+                            Providing quality educational resources for BSc and BCA students. 
+                            Access study materials, question papers, and lab manuals in one place.
+                        </p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <h5 class="text-white mb-3">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">Home</a></li>
+                            <li class="mb-2"><a href="#resources" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">Resources</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">BSc Materials</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none" style="color: rgba(255,255,255,0.6);">BCA Materials</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="text-white mb-3">Contact Info</h5>
+                        <p class="footer-text mb-2">
+                            <i class="fas fa-envelope me-2"></i> support@collegeportal.edu
+                        </p>
+                        <p class="footer-text mb-2">
+                            <i class="fas fa-phone me-2"></i> +91 12345 67890
+                        </p>
+                        <p class="footer-text">
+                            <i class="fas fa-map-marker-alt me-2"></i> College Campus, City, State
+                        </p>
+                    </div>
+                </div>
+                <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.1);">
+                <div class="text-center">
+                    <p class="mb-0" style="color: rgba(255,255,255,0.5);">
+                        &copy; 2024 College Educational Resources Portal. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Mathematical symbols and formulas
+        const mathElements = [
+            '∫', '∑', '∏', '∞', '√', 'π', 'θ', 'α', 'β', 'γ', 'δ',
+            'Δ', '∇', '∂', 'σ', 'τ', 'φ', 'ψ', 'ω', 'λ', 'μ', 'ξ',
+            'e^{iπ} + 1 = 0', 'a² + b² = c²', 'E = mc²', 'F = ma',
+            'sin²θ + cos²θ = 1', 'e^{iθ} = cosθ + isinθ',
+            '∫_{a}^{b} f(x) dx = F(b) - F(a)', '∑_{n=1}^{∞} 1/n² = π²/6',
+            '∇⋅E = ρ/ε₀', '∇×B = μ₀J + μ₀ε₀∂E/∂t', 'Hψ = Eψ',
+            'S = k ln Ω', 'PV = nRT', 'F = G(m₁m₂)/r²'
+        ];
+        
+        // Create 3D cube - IMPROVED VISIBILITY
+        function create3DCube() {
+            const cube = document.getElementById('main-cube');
+            const size = 250;
+            const faces = 6;
+            
+            const mathContent = [
+                '∫ f(x) dx',
+                '∑ f(x)',
+                '∏ f(x)',
+                'lim x→∞',
+                'd/dx',
+                '∇²ψ'
+            ];
+            
+            const colors = [
+                '#3498db', '#2ecc71', '#9b59b6', '#e74c3c', '#f39c12', '#1abc9c'
+            ];
+            
+            for (let i = 0; i < faces; i++) {
+                const face = document.createElement('div');
+                face.className = 'cube-face';
+                face.style.width = size + 'px';
+                face.style.height = size + 'px';
+                face.style.background = `rgba(${parseInt(colors[i].slice(1,3), 16)}, ${parseInt(colors[i].slice(3,5), 16)}, ${parseInt(colors[i].slice(5,7), 16)}, 0.2)`;
+                face.style.border = `3px solid ${colors[i]}`;
+                face.style.boxShadow = `0 0 40px ${colors[i]}`;
+                face.textContent = mathContent[i];
+                face.style.fontSize = '2.5rem';
+                face.style.fontWeight = 'bold';
+                face.style.color = colors[i];
+                face.style.transform = `rotateY(${i * 60}deg) translateZ(${size/2}px)`;
+                cube.appendChild(face);
+            }
+        }
+        
+        // Create rotating mathematical image using SVG - IMPROVED VISIBILITY
+        function createRotatingImage() {
+            const container = document.getElementById('math-image');
+            
+            // Create SVG for mathematical diagram
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("viewBox", "0 0 400 400");
+            
+            // Draw mathematical shapes
+            const shapes = [
+                // Circle
+                { type: 'circle', cx: 200, cy: 200, r: 100, fill: 'none', stroke: '#3498db', 'stroke-width': 3, 'stroke-opacity': 0.8 },
+                // Triangle
+                { type: 'polygon', points: '200,80 320,320 80,320', fill: 'none', stroke: '#2ecc71', 'stroke-width': 3, 'stroke-opacity': 0.8 },
+                // Square
+                { type: 'rect', x: 100, y: 100, width: 200, height: 200, fill: 'none', stroke: '#9b59b6', 'stroke-width': 3, 'stroke-opacity': 0.8 },
+                // Sine wave
+                { type: 'path', d: 'M50,200 Q150,50 250,200 T450,200', fill: 'none', stroke: '#e74c3c', 'stroke-width': 3, 'stroke-opacity': 0.8 },
+                // Mathematical symbols
+                { type: 'text', x: 200, y: 100, text: '∫', fill: '#3498db', 'font-size': 60, 'font-weight': 'bold', 'filter': 'url(#glow)' },
+                { type: 'text', x: 320, y: 280, text: '∑', fill: '#2ecc71', 'font-size': 60, 'font-weight': 'bold', 'filter': 'url(#glow)' },
+                { type: 'text', x: 80, y: 280, text: 'π', fill: '#9b59b6', 'font-size': 60, 'font-weight': 'bold', 'filter': 'url(#glow)' }
+            ];
+            
+            // Add glow filter
+            const defs = document.createElementNS(svgNS, "defs");
+            const filter = document.createElementNS(svgNS, "filter");
+            filter.setAttribute("id", "glow");
+            
+            const feGaussianBlur = document.createElementNS(svgNS, "feGaussianBlur");
+            feGaussianBlur.setAttribute("stdDeviation", "3");
+            feGaussianBlur.setAttribute("result", "coloredBlur");
+            
+            const feMerge = document.createElementNS(svgNS, "feMerge");
+            const feMergeNode1 = document.createElementNS(svgNS, "feMergeNode");
+            feMergeNode1.setAttribute("in", "coloredBlur");
+            const feMergeNode2 = document.createElementNS(svgNS, "feMergeNode");
+            feMergeNode2.setAttribute("in", "SourceGraphic");
+            
+            feMerge.appendChild(feMergeNode1);
+            feMerge.appendChild(feMergeNode2);
+            filter.appendChild(feGaussianBlur);
+            filter.appendChild(feMerge);
+            defs.appendChild(filter);
+            svg.appendChild(defs);
+            
+            shapes.forEach(shape => {
+                const element = document.createElementNS(svgNS, shape.type);
+                
+                Object.keys(shape).forEach(key => {
+                    if (key !== 'type' && key !== 'text') {
+                        element.setAttribute(key, shape[key]);
+                    }
+                });
+                
+                if (shape.type === 'text') {
+                    element.textContent = shape.text;
+                }
+                
+                svg.appendChild(element);
+            });
+            
+            container.appendChild(svg);
+            
+            // Position randomly
+            container.style.left = Math.random() * 70 + 'vw';
+            container.style.top = Math.random() * 70 + 'vh';
+        }
+        
+        // Create floating mathematical elements - IMPROVED VISIBILITY
+        function createMathElements() {
+            const container = document.getElementById('math-elements');
+            
+            mathElements.forEach((element, index) => {
+                const mathEl = document.createElement('div');
+                mathEl.className = 'math-element';
+                if (element.length > 1) {
+                    mathEl.classList.add('large');
+                }
+                mathEl.textContent = element;
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const duration = Math.random() * 25 + 20;
+                const delay = Math.random() * 20;
+                const size = element.length > 1 ? 0.9 : Math.random() * 0.8 + 0.6;
+                const brightness = 0.7 + Math.random() * 0.3;
+                
+                mathEl.style.cssText = `
+                    left: ${left}%;
+                    top: ${top}%;
+                    font-size: ${size}rem;
+                    animation-delay: ${delay}s;
+                    animation-duration: ${duration}s;
+                    z-index: ${Math.floor(Math.random() * 3) + 1};
+                    filter: brightness(${brightness}) drop-shadow(0 0 12px currentColor);
+                `;
+                
+                container.appendChild(mathEl);
+            });
+        }
+        
+        // Create orbital rings
+        function createOrbitalRings() {
+            const container = document.getElementById('orbital-rings');
+            const colors = ['#3498db', '#2ecc71', '#9b59b6', '#e74c3c', '#f39c12'];
+            
+            colors.forEach((color, i) => {
+                const ring = document.createElement('div');
+                ring.className = 'orbital-ring';
+                const size = 200 + i * 150;
+                const duration = 30 + i * 10;
+                
+                ring.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    border-color: ${color};
+                    top: 50%;
+                    left: 50%;
+                    margin-left: -${size/2}px;
+                    margin-top: -${size/2}px;
+                    animation-duration: ${duration}s;
+                    animation-delay: ${-i * 5}s;
+                    box-shadow: 0 0 20px ${color};
+                `;
+                
+                container.appendChild(ring);
+            });
+        }
+        
+        // Mathematical Canvas Animation
+        function initMathCanvas() {
+            const canvas = document.getElementById('mathCanvas');
+            const ctx = canvas.getContext('2d');
+            let time = 0;
+            let points = [];
+            
+            // Resize canvas for responsive design
+            function resizeCanvas() {
+                const container = canvas.parentElement;
+                const maxSize = Math.min(container.offsetWidth, 400);
+                canvas.width = maxSize;
+                canvas.height = maxSize;
+                canvas.style.width = maxSize + 'px';
+                canvas.style.height = maxSize + 'px';
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            function draw() {
+                const width = canvas.width;
+                const height = canvas.height;
+                const centerX = width / 2;
+                const centerY = height / 2;
+                const radius = Math.min(width, height) * 0.35;
+                
+                // Clear canvas with semi-transparent background
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
+                ctx.fillRect(0, 0, width, height);
+                
+                // Draw grid
+                ctx.strokeStyle = 'rgba(52, 152, 219, 0.2)';
+                ctx.lineWidth = 1;
+                const gridSize = 40;
+                for (let x = 0; x < width; x += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, height);
+                    ctx.stroke();
+                }
+                for (let y = 0; y < height; y += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke();
+                }
+                
+                // Draw sine wave
+                ctx.beginPath();
+                ctx.strokeStyle = '#3498db';
+                ctx.lineWidth = 3;
+                for (let x = 0; x < width; x++) {
+                    const y = centerY + Math.sin(x * 0.03 + time) * radius * 0.4;
+                    if (x === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.stroke();
+                
+                // Draw cosine wave
+                ctx.beginPath();
+                ctx.strokeStyle = '#2ecc71';
+                ctx.lineWidth = 3;
+                for (let x = 0; x < width; x++) {
+                    const y = centerY + Math.cos(x * 0.025 + time * 0.8) * radius * 0.3;
+                    if (x === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.stroke();
+                
+                // Draw rotating circles (Fourier series visualization)
+                let x = centerX;
+                let y = centerY;
+                let prevX = x;
+                let prevY = y;
+                
+                // Draw multiple rotating circles
+                const circles = 5;
+                for (let i = 0; i < circles; i++) {
+                    const freq = i * 2 + 1;
+                    const circleRadius = radius * (0.6 / (i + 1));
+                    const angle = time * freq;
+                    
+                    // Draw circle
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(155, 89, 182, ${0.3 + i * 0.1})`;
+                    ctx.lineWidth = 2;
+                    ctx.arc(prevX, prevY, circleRadius, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    // Calculate new point on circle
+                    x = prevX + Math.cos(angle) * circleRadius;
+                    y = prevY + Math.sin(angle) * circleRadius;
+                    
+                    // Draw connecting line
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(52, 152, 219, ${0.5 + i * 0.1})`;
+                    ctx.lineWidth = 2;
+                    ctx.moveTo(prevX, prevY);
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                    
+                    // Draw dot at end point
+                    ctx.beginPath();
+                    ctx.fillStyle = `rgba(46, 204, 113, ${0.7 + i * 0.1})`;
+                    ctx.arc(x, y, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    prevX = x;
+                    prevY = y;
+                }
+                
+                // Draw trace of the last point (creating Lissajous curve)
+                points.push({x, y, time});
+                if (points.length > 300) points.shift();
+                
+                // Draw gradient trace
+                for (let i = 0; i < points.length - 1; i++) {
+                    const alpha = 0.1 + (i / points.length) * 0.6;
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(231, 76, 60, ${alpha})`;
+                    ctx.lineWidth = 2;
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(points[i + 1].x, points[i + 1].y);
+                    ctx.stroke();
+                }
+                
+                // Draw mathematical symbols
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(time * 0.5);
+                
+                // Draw integral symbol
+                ctx.font = 'bold 80px serif';
+                ctx.fillStyle = 'rgba(52, 152, 219, 0.8)';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('∫', 0, 0);
+                
+                // Draw summation symbol
+                ctx.font = 'bold 60px serif';
+                ctx.fillStyle = 'rgba(46, 204, 113, 0.8)';
+                ctx.fillText('∑', -60, -60);
+                
+                // Draw pi symbol
+                ctx.fillStyle = 'rgba(155, 89, 182, 0.8)';
+                ctx.fillText('π', 60, 60);
+                
+                ctx.restore();
+                
+                time += 0.03;
+                requestAnimationFrame(draw);
+            }
+            
+            draw();
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            create3DCube();
+            createRotatingImage();
+            createMathElements();
+            createOrbitalRings();
+            initMathCanvas();
+            
+            // Enhanced dropdown functionality
+            const dropdowns = document.querySelectorAll('.dropdown-submenu');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const submenu = this.nextElementSibling;
+                    if (submenu) {
+                        // Close other open submenus at the same level
+                        const parent = this.parentElement;
+                        const siblings = parent.parentElement.querySelectorAll('.dropdown-submenu > .dropdown-menu.show');
+                        siblings.forEach(sibling => {
+                            if (sibling !== submenu) {
+                                sibling.classList.remove('show');
+                            }
+                        });
+                        
+                        submenu.classList.toggle('show');
+                    }
+                });
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-menu')) {
+                    document.querySelectorAll('.dropdown-submenu .dropdown-menu.show').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Mouse interaction for 3D effect
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                const cube = document.querySelector('.cube');
+                const mathImage = document.querySelector('.rotating-image');
+                const orbitalRings = document.querySelectorAll('.orbital-ring');
+                
+                // Rotate cube based on mouse position
+                cube.style.transform = `rotateX(${mouseY * 180}deg) rotateY(${mouseX * 180}deg)`;
+                
+                // Move rotating image slightly
+                const moveX = (mouseX - 0.5) * 40;
+                const moveY = (mouseY - 0.5) * 40;
+                mathImage.style.transform = `translate(${moveX}px, ${moveY}px) rotate3D(${mouseX}, ${mouseY}, 0.5, ${mouseX * 360}deg)`;
+                
+                // Affect orbital rings
+                orbitalRings.forEach((ring, i) => {
+                    const speed = 0.5 + i * 0.2;
+                    ring.style.transform = `rotateX(60deg) rotateY(${mouseX * 180 * speed}deg) rotateZ(${mouseY * 180 * speed}deg)`;
+                });
+            });
+            
+            // Parallax effect
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const cubeContainer = document.querySelector('.cube-container');
+                const mathElements = document.querySelectorAll('.math-element');
+                const orbitalRings = document.querySelectorAll('.orbital-ring');
+                
+                cubeContainer.style.transform = `rotateX(${scrolled * 0.05}deg) rotateY(${scrolled * 0.05}deg)`;
+                
+                mathElements.forEach(el => {
+                    const speed = 0.1;
+                    const yPos = -(scrolled * speed);
+                    el.style.transform += ` translateY(${yPos}px)`;
+                });
+                
+                orbitalRings.forEach((ring, i) => {
+                    const speed = 0.02 + i * 0.01;
+                    ring.style.transform += ` translateY(${-scrolled * speed}px)`;
+                });
+            });
+            
+            // Create more math elements periodically
+            setInterval(() => {
+                const container = document.getElementById('math-elements');
+                const mathEl = document.createElement('div');
+                mathEl.className = 'math-element';
+                
+                const symbols = ['∫', '∑', '∏', '∞', '√', 'π', 'Δ', '∇', '∂'];
+                mathEl.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                const left = Math.random() * 100;
+                const duration = Math.random() * 20 + 15;
+                const size = Math.random() * 0.8 + 0.5;
+                const color = Math.random() > 0.5 ? '#3498db' : '#2ecc71';
+                
+                mathEl.style.cssText = `
+                    left: ${left}%;
+                    top: 100%;
+                    animation-duration: ${duration}s;
+                    font-size: ${size}rem;
+                    color: ${color};
+                    text-shadow: 0 0 15px ${color};
+                `;
+                
+                container.appendChild(mathEl);
+                
+                // Remove old elements
+                if (container.children.length > 40) {
+                    container.removeChild(container.firstChild);
+                }
+            }, 1500);
+            
+            // Pulse effect for cube faces
+            setInterval(() => {
+                const cubeFaces = document.querySelectorAll('.cube-face');
+                cubeFaces.forEach(face => {
+                    face.style.boxShadow = `0 0 ${30 + Math.random() * 20}px ${face.style.color}`;
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
